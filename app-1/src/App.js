@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import AddTodo from './components/AddTodo';
+import List from './components/List';
 
 function App() {
+
+  const [todo, settodo] = useState([])
+
+  function addtodo(item) {
+    const newtodo = [...todo, item]
+    settodo(newtodo)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <AddTodo addtodo={addtodo}/>
+      <List todo={todo}/>
     </div>
   );
 }
